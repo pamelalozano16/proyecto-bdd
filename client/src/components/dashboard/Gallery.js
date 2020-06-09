@@ -6,9 +6,9 @@ const Gallery = ({ gallery }) =>
   gallery !== null &&
   gallery.length > 0 &&
   gallery.map((pic) => (
-    <div className="gallery">
-      <a target="_blank" href={pic.sourceUrl}>
-        <img src={pic.thumbnail} alt={pic.title} />
+    <div key={pic.id} className="gallery">
+      <a target="_blank" href={pic.urls.full}>
+        <img src={pic.urls.regular} alt={pic.alt_description} />
       </a>
     </div>
   ));

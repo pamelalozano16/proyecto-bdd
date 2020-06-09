@@ -43,7 +43,7 @@ const Dashboard = ({ isAuthenticated, search }) => {
               value="img"
               onChange={(e) => onChange(e)}
             />
-            <label for="img">Imagenes</label>
+            <label htmlFor="img">Imagenes</label>
             <input
               type="radio"
               id="provedoores"
@@ -51,7 +51,7 @@ const Dashboard = ({ isAuthenticated, search }) => {
               value="provedoores"
               onChange={(e) => onChange(e)}
             />
-            <label for="provedoores">Proveedores</label>
+            <label htmlFor="provedoores">Proveedores</label>
           </div>
           <div className="form-group">
             <button type="button" type="submit" className="btn btn-primary">

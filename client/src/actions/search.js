@@ -1,41 +1,34 @@
 import axios from "axios";
 import { setAlert } from "./alert";
-import setAuthToken from "../utils/setAuthToken";
 
 import { SEARCH_FAIL, SEARCH_SUCCESS, SEARCH_RESET } from "./types";
 
 export const search = ({ type, phrase }) => async (dispatch) => {
   console.log(phrase, type);
-  const config = {
-    headers: {
-      apikey: "21889d40-aa8b-11ea-92bc-41776a8fe9ce",
-    },
-  };
-  try {
-    const res = await axios.get(
-      "https://app.zenserp.com/api/v2/search?q=" +
-        phrase +
-        "&tbm=isch&location=United+States&search_engine=google.com&hl=en&gl=US&device=desktop",
-      config
-    );
-    // const res = await axios.get("/api/auth/try");
-    console.log(res);
-    console.log(res.data.image_results);
-    dispatch({
-      type: SEARCH_RESET,
-    });
-    dispatch({
-      type: SEARCH_SUCCESS,
-      payload: res.data.image_results,
-    });
-  } catch (err) {
-    console.log(err);
-    const errors = err.response.data.errors;
-    if (errors) {
-      errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+  if (type === "img") {
+    try {
+      const res = await axios.get(
+        "https://api.unsplash.com/search/photos/?client_id=Oiu86ebjvSZNcgfOBp8ES3lmUtRKw4U_7QDoeAE7u6k&page=1&per_page=30&query=" +
+          phrase
+      );
+
+      console.log(res);
+      dispatch({
+        type: SEARCH_RESET,
+      });
+      dispatch({
+        type: SEARCH_SUCCESS,
+        payload: res.data.results,
+      });
+    } catch (err) {
+      console.log(err);
+      const errors = err.response.data.errors;
+      if (errors) {
+        errors.forEach((error) => dispatch(setAlert(error.msg, "danger")));
+      }
+      dispatch({
+        type: SEARCH_FAIL,
+      });
     }
-    dispatch({
-      type: SEARCH_FAIL,
-    });
   }
 };
