@@ -41,7 +41,7 @@ const Navbar = ({ isAuthenticated, logout }) => {
     <nav className="navbar bg-dark">
       <h1>
         <Link to="/">
-          <i className="fas fa-code"></i> Web Studio
+          <i className="fa fa-lightbulb-o"></i> Idea Hunt
         </Link>
       </h1>
       <Fragment>{isAuthenticated ? authLinks : guestLinks}</Fragment>

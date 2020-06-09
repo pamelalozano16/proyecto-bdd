@@ -4,8 +4,9 @@ import PropTypes from "prop-types";
 import { search } from "../../actions/search";
 import { connect } from "react-redux";
 import Gallery from "./Gallery";
+import { loadUser } from "../../actions/auth";
 
-const Dashboard = ({ isAuthenticated, search }) => {
+const Dashboard = ({ isAuthenticated, search, loadUser }) => {
   const [formData, setFormData] = useState({
     type: "",
     phrase: "",
@@ -16,6 +17,7 @@ const Dashboard = ({ isAuthenticated, search }) => {
 
   const { type, phrase } = formData;
   const onChange = (e) => {
+    loadUser();
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const onSubmit = (e) => {
@@ -68,10 +70,11 @@ const Dashboard = ({ isAuthenticated, search }) => {
 Dashboard.propTypes = {
   isAuthenticated: PropTypes.bool,
   search: PropTypes.func.isRequired,
+  loadUser: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { search })(Dashboard);
+export default connect(mapStateToProps, { search, loadUser })(Dashboard);
