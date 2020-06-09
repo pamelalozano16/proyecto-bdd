@@ -7,6 +7,8 @@ import {
   LOGIN_FAIL,
   UPDATE_FAIL,
   UPDATE_SUCCESS,
+  SEARCH_SUCCESS,
+  SEARCH_FAIL,
 } from "../actions/types";
 
 const initialState = {
@@ -47,6 +49,7 @@ export default function (state = initialState, action) {
         isAuthenticated: false,
         loading: false,
       };
+
     default:
       return state;
   }

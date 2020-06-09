@@ -12,3 +12,6 @@ export const PROFILE_ERROR = "PROFILE_ERROR";
 export const CLEAR_PROFILE = "CLEAR_PROFILE";
 export const UPDATE_SUCCESS = "UPDATE_SUCCESS";
 export const UPDATE_FAIL = "UPDATE_FAIL";
+export const SEARCH_FAIL = "SEARCH_FAIL";
+export const SEARCH_SUCCESS = "SEARCH_SUCCESS";
+export const SEARCH_RESET = "SEARCH_RESET";

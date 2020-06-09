@@ -41,7 +41,7 @@ const MyProfile = ({
     e.preventDefault();
     if (!displayChangePassword) {
       updateUser({ name, email });
-      setAlert("Tu información ha sido modificada", "success");
+      setAlert("Tu información ha sido modificada ", "success");
     } else {
       if (password !== password2) {
         setAlert("Las contraseñas no coinciden", "danger");
