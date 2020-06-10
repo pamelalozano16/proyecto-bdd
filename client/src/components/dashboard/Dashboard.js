@@ -1,12 +1,13 @@
 import React, { Fragment, useState, useEffect } from "react";
 import { Link, Redirect } from "react-router-dom";
 import PropTypes from "prop-types";
-import { search } from "../../actions/search";
+import { search, resetSearch } from "../../actions/search";
 import { connect } from "react-redux";
 import Gallery from "./Gallery";
+import Products from "./Products";
 import { loadUser } from "../../actions/auth";
 
-const Dashboard = ({ isAuthenticated, search, loadUser }) => {
+const Dashboard = ({ isAuthenticated, search, resetSearch, loadUser }) => {
   const [formData, setFormData] = useState({
     type: "",
     phrase: "",
@@ -18,6 +19,9 @@ const Dashboard = ({ isAuthenticated, search, loadUser }) => {
   const { type, phrase } = formData;
   const onChange = (e) => {
     loadUser();
+    if (e.target.type === "radio") {
+      resetSearch();
+    }
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const onSubmit = (e) => {
@@ -61,7 +65,8 @@ const Dashboard = ({ isAuthenticated, search, loadUser }) => {
             </button>
           </div>
         </form>
-        <Gallery />
+        {/* <Gallery /> */}
+        <Fragment>{type == "img" ? <Gallery /> : <Products />}</Fragment>
       </section>
     </Fragment>
   );
@@ -70,6 +75,7 @@ const Dashboard = ({ isAuthenticated, search, loadUser }) => {
 Dashboard.propTypes = {
   isAuthenticated: PropTypes.bool,
   search: PropTypes.func.isRequired,
+  search: PropTypes.func.isRequired,
   loadUser: PropTypes.func.isRequired,
 };
 
@@ -77,4 +83,6 @@ const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { search, loadUser })(Dashboard);
+export default connect(mapStateToProps, { search, loadUser, resetSearch })(
+  Dashboard
+);
