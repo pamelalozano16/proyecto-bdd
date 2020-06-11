@@ -17,9 +17,9 @@ const Boards = ({ updateTablero, postTableros, data, getOne, tablero }) => {
   const x = tablero;
   useEffect(() => {
     setFormData({
-      name: data.isNew && !x.name ? "" : x.name,
-      desc: data.isNew && !x.desc ? "" : x.desc,
-      id: data.isNew && !x._id ? "" : x._id,
+      name: data.isNew ? "" : x.name,
+      desc: data.isNew ? "" : x.desc,
+      id: data.isNew ? "" : x._id,
     });
   }, [tablero]);
 

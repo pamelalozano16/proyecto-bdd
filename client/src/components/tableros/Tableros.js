@@ -47,6 +47,7 @@ const Tableros = ({
           type="button"
           className="btn btn-primary"
           onClick={() => {
+            changeData({ isNew: true, _id: "" });
             toggleCreate(!displayCreate);
           }}
         >
