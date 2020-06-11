@@ -19,15 +19,13 @@ const TableroSchema = new mongoose.Schema({
           proveedor: {
             imgUrl: {
               type: String,
-              required: true,
             },
             origin: {
               type: String,
-              unique: true,
+              default: "",
             },
             cost: {
               type: Number,
-              required: true,
             },
           },
         },

@@ -117,7 +117,7 @@ const MyProfile = ({
 
 MyProfile.propTypes = {
   user: PropTypes.object.isRequired,
-  loading: PropTypes.object.isRequired,
+  loading: PropTypes.bool,
   isAuthenticated: PropTypes.bool,
   loadUser: PropTypes.func.isRequired,
   updateUser: PropTypes.func.isRequired,
@@ -127,7 +127,7 @@ MyProfile.propTypes = {
 const mapStateToProps = (state) => ({
   user: state.auth.user,
   isAuthenticated: state.auth.isAuthenticated,
-  loading: PropTypes.object.isRequired,
+  loading: state.auth.loading,
 });
 
 export default connect(mapStateToProps, { loadUser, updateUser, setAlert })(

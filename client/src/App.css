@@ -1,3 +1,4 @@
+@import url("https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"); /* Using a url */
 /* Global Styles */
 :root {
   --primary-color: #17a2b8;
@@ -235,6 +236,10 @@ img {
 }
 
 /* Forms */
+
+button {
+  font: inherit;
+}
 .form .form-group {
   margin: 1.2rem 0;
 }
@@ -362,8 +367,8 @@ button {
 
 .navbar a {
   color: #fff;
-  padding: 0.45rem;
-  margin: 0 0.25rem;
+  padding: 0.45rem !important;
+  margin: 0 0.25rem !important;
 }
 
 .navbar a:hover {

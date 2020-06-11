@@ -15,3 +15,5 @@ export const UPDATE_FAIL = "UPDATE_FAIL";
 export const SEARCH_FAIL = "SEARCH_FAIL";
 export const SEARCH_SUCCESS = "SEARCH_SUCCESS";
 export const SEARCH_RESET = "SEARCH_RESET";
+export const GET_TABLEROS = "GET_TABLEROS";
+export const RESET_TABLEROS = "RESET_TABLEROS";

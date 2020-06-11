@@ -9,19 +9,26 @@ const Navbar = ({ isAuthenticated, logout }) => {
     <ul>
       <li>
         <Link to="/dashboard">
-          <span className="hide-sm">Dashboard</span>
+          <i className="fa fa-compass"></i>{" "}
+          <span className="hide-sm">Explorar</span>
+        </Link>
+      </li>
+      <li>
+        <Link to="/tableros">
+          <i className="fa fa-pencil-square-o"></i>{" "}
+          <span className="hide-sm">Mis Tableros</span>
         </Link>
       </li>
       <li>
         <Link to="/my-profile">
           <i className="fas fa-user"></i>{" "}
-          <span className="hide-sm">My Profile</span>
+          <span className="hide-sm">My Perfil</span>
         </Link>
       </li>
       <li>
         <a onClick={logout} href="#!">
           <i className="fas fa-sign-out-alt"></i>{" "}
-          <span className="hide-sm">Logout</span>
+          <span className="hide-sm">Cerrar Sesión</span>
         </a>
       </li>
     </ul>

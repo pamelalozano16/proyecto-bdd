@@ -51,7 +51,7 @@ router.post(
 
     try {
       //Create
-      tablero = new Tablero(tableroFields);
+      const tablero = new Tablero(tableroFields);
       await tablero.save();
       res.json(tablero);
     } catch (err) {

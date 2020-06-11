@@ -7,6 +7,7 @@ import Navbar from "./components/layout/Navbar";
 import Landing from "./components/layout/Landing";
 import Alert from "./components/layout/Alert";
 import Dashboard from "./components/dashboard/Dashboard";
+import Tableros from "./components/tableros/Tableros";
 import MyProfile from "./components/dashboard/MyProfile";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
@@ -43,6 +44,7 @@ function App() {
                 <Route exact path="/login" component={Login} />
                 <PrivateRoute exact path="/dashboard" component={Dashboard} />
                 <PrivateRoute exact path="/my-profile" component={MyProfile} />
+                <PrivateRoute exact path="/tableros" component={Tableros} />
               </Switch>
             </section>
           }
