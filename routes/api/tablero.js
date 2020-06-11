@@ -27,6 +27,26 @@ router.get("/", auth, async (req, res) => {
     res.status(500).send("Server Error");
   }
 });
+//@route GET api/tablero/me/id
+//@desc Obtiene tableros
+//@access Private
+router.get("/me/:id", auth, async (req, res) => {
+  try {
+    //user en profile es el id del user
+    const tableros = await Tablero.findOne({
+      _id: req.params.id,
+    }).populate("user", ["name", "email"]);
+
+    if (!tableros) {
+      return res.status(400).json({ msg: "Not found" });
+    }
+
+    res.json(tableros);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+});
 
 //@route POST api/tablero
 //@desc Crea tablero

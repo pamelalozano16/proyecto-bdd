@@ -1,7 +1,14 @@
-import { GET_TABLEROS, RESET_TABLEROS } from "../actions/types";
+import {
+  GET_TABLEROS,
+  RESET_TABLEROS,
+  CREATE_SUCCESS,
+  FOUND_ONE,
+} from "../actions/types";
 
 const initialState = {
   tableros: [],
+  newCreated: false,
+  tablero: {},
 };
 
 export default function (state = initialState, action) {
@@ -11,6 +18,13 @@ export default function (state = initialState, action) {
    image_results array
     */
   switch (type) {
+    case FOUND_ONE:
+      return {
+        ...state,
+        tablero: payload,
+      };
+    case CREATE_SUCCESS:
+      return { ...state, newCreated: false };
     case GET_TABLEROS:
       return {
         ...state,

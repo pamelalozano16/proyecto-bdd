@@ -17,3 +17,6 @@ export const SEARCH_SUCCESS = "SEARCH_SUCCESS";
 export const SEARCH_RESET = "SEARCH_RESET";
 export const GET_TABLEROS = "GET_TABLEROS";
 export const RESET_TABLEROS = "RESET_TABLEROS";
+export const CREATE_SUCCESS = "CREATE_SUCCESS";
+export const CREATE_FAIL = "CREATE_FAIL";
+export const FOUND_ONE = "FOUND_ONE";

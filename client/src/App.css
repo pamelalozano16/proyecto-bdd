@@ -1,4 +1,5 @@
 @import url("https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"); /* Using a url */
+
 /* Global Styles */
 :root {
   --primary-color: #17a2b8;
@@ -251,7 +252,9 @@ button {
 }
 
 .form input[type="text"],
+.form input[type="textarea"],
 .form input[type="email"],
+textarea,
 .form input[type="password"],
 .form input[type="date"],
 .form select,
@@ -336,7 +339,44 @@ button {
 .form .social-input i.fa-linkedin {
   color: #0077b5;
 }
+.modalBox {
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  background-color: rgba(112, 128, 144, 0.5);
+  top: 0;
+  left: 0;
+  padding-top: 5%;
+}
+.formModalBox {
+  width: 700px;
+  height: 700px;
+  border-radius: 10px;
+  padding-top: 5%;
+  padding-left: 2%;
+  text-align: center;
+  margin: auto auto;
+  background-color: white;
+}
+.formModalBox i {
+  position: absolute;
+  font-size: 30px;
+  margin-left: 280px;
+  margin-bottom: 0px;
+  bottom: 818px;
+  cursor: pointer;
+}
 
+.formModalBox .form input[type="text"],
+textarea,
+.form input[type="email"],
+.form input[type="textarea"],
+.form input[type="password"],
+.form input[type="date"],
+.form select,
+.form textarea {
+  width: 90%;
+}
 .table th,
 .table td {
   padding: 1rem;
