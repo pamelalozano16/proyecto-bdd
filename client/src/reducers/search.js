@@ -16,7 +16,6 @@ export default function (state = initialState, action) {
         ...state,
         gallery: payload,
       };
-    case SEARCH_RESET:
     case SEARCH_FAIL:
       return {
         ...state,

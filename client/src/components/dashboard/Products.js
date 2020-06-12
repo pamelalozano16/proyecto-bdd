@@ -1,23 +1,57 @@
-import React from "react";
+import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
+import AddProveedor from "./AddProveedor";
 
-const Products = ({ gallery }) =>
-  gallery !== null &&
-  gallery.length > 0 &&
-  gallery.map((pic) => (
-    <div key={pic.productId} className="gallery">
-      <a target="_blank" href={pic.productElements.image.imgUrl}>
-        <img
-          src={pic.productElements.image.imgUrl}
-          alt={pic.productElements.title.title}
-        />
-      </a>
-      <div className="desc">
-        Price: {pic.productElements.price.sell_price.formatedAmount}
-      </div>
-    </div>
-  ));
+const Products = ({ gallery }) => {
+  const [isAdding, adding] = useState(false);
+  const [image, modifyImage] = useState("");
+  const addImage = (index) => {
+    modifyImage(gallery[index]);
+    adding(true);
+  };
+
+  return (
+    <Fragment>
+      {gallery !== null &&
+        gallery.length > 0 &&
+        gallery.map((pic, index) => (
+          <div key={pic.productId} className="gallery">
+            <a target="_blank" href={pic.productElements.image.imgUrl}>
+              <img
+                src={pic.productElements.image.imgUrl}
+                alt={pic.productElements.title.title}
+              />
+            </a>
+            <div className="desc">
+              Price: {pic.productElements.price.sell_price.formatedAmount}
+              <button
+                className="btn btn-success"
+                onClick={() => {
+                  addImage(index);
+                }}
+              >
+                Agregar
+              </button>
+            </div>
+          </div>
+        ))}
+      {isAdding && (
+        <Fragment>
+          <div className="modalBox">
+            <div className="formModalBox tableBox">
+              <i
+                className="fa fa-window-close"
+                onClick={() => adding(false)}
+              ></i>
+              <AddProveedor image={image} />
+            </div>
+          </div>
+        </Fragment>
+      )}
+    </Fragment>
+  );
+};
 
 Products.propTypes = {
   gallery: PropTypes.array.isRequired,

@@ -71,3 +71,19 @@ export const resetSearch = () => async (dispatch) => {
     type: SEARCH_FAIL,
   });
 };
+
+export const addNewImage = (url, id_tablero) => async (dispatch) => {
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const body = JSON.stringify({ imageUrl: url });
+  console.log(body);
+  try {
+    axios.put("/api/tablero/img/" + id_tablero, body, config);
+    dispatch(setAlert("Imagen agregada", "success"));
+  } catch (error) {
+    console.log(error);
+  }
+};

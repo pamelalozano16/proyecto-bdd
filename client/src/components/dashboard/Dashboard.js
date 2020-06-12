@@ -6,12 +6,23 @@ import { connect } from "react-redux";
 import Gallery from "./Gallery";
 import Products from "./Products";
 import { loadUser } from "../../actions/auth";
+import { getTableros } from "../../actions/tableros";
 
-const Dashboard = ({ isAuthenticated, search, resetSearch, loadUser }) => {
+const Dashboard = ({
+  isAuthenticated,
+  search,
+  getTableros,
+  resetSearch,
+  loadUser,
+}) => {
   const [formData, setFormData] = useState({
     type: "",
     phrase: "",
   });
+  useEffect(() => {
+    getTableros();
+  }, []);
+
   if (!isAuthenticated) {
     return <Redirect to="/login" />;
   }
@@ -77,12 +88,16 @@ Dashboard.propTypes = {
   search: PropTypes.func.isRequired,
   search: PropTypes.func.isRequired,
   loadUser: PropTypes.func.isRequired,
+  getTableros: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   isAuthenticated: state.auth.isAuthenticated,
 });
 
-export default connect(mapStateToProps, { search, loadUser, resetSearch })(
-  Dashboard
-);
+export default connect(mapStateToProps, {
+  search,
+  loadUser,
+  resetSearch,
+  getTableros,
+})(Dashboard);

@@ -30,11 +30,6 @@ export default function (state = initialState, action) {
         ...state,
         tableros: payload,
       };
-    case RESET_TABLEROS:
-      return {
-        ...state,
-        gallery: [],
-      };
     default:
       return state;
   }

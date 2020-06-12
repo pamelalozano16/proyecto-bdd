@@ -113,7 +113,7 @@ router.patch("/:tablero_id", auth, async (req, res) => {
 //@access Private
 router.put(
   "/img/:tablero_id",
-  [auth, [check("imgUrl", "URL is required").not().isEmpty()]],
+  [auth, [check("imageUrl", "URL is required").not().isEmpty()]],
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {

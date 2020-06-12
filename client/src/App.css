@@ -312,7 +312,7 @@ button {
 
 .desc {
   padding: 15px;
-  text-align: center;
+  text-align: left;
 }
 
 .form .social-input {
@@ -344,9 +344,8 @@ button {
   position: absolute;
   height: 100%;
   background-color: rgba(112, 128, 144, 0.5);
-  top: 0;
+  top: 75px;
   left: 0;
-  padding-top: 5%;
 }
 .formModalBox {
   width: 700px;
@@ -355,7 +354,7 @@ button {
   padding-top: 5%;
   padding-left: 2%;
   text-align: center;
-  margin: auto auto;
+  margin: 5% auto;
   background-color: white;
 }
 .formModalBox i {
@@ -377,6 +376,25 @@ textarea,
 .form textarea {
   width: 90%;
 }
+.tableBox {
+  padding-left: 0;
+  padding-top: 0;
+}
+
+.desc .btn {
+  margin-left: 39px;
+}
+
+.addImage {
+  text-align: left;
+  padding-top: 10%;
+  overflow-y: scroll;
+  height: inherit;
+}
+.addImage .my-3 {
+  margin: 3rem 3rem;
+}
+
 .table th,
 .table td {
   padding: 1rem;
