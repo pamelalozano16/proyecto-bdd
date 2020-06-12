@@ -37,7 +37,7 @@ export const search = ({ type, phrase }) => async (dispatch) => {
           "content-type": "application/octet-stream",
           "x-rapidapi-host": "ali-express1.p.rapidapi.com",
           "x-rapidapi-key":
-            "0e6f6e6dafmshba98fffb4faa6fbp11fee2jsn0e57f751651d",
+            "c04a1846a5mshfead1f56c7e9149p1272a1jsn496a2065e25d",
           useQueryString: true,
         },
       };
@@ -83,6 +83,25 @@ export const addNewImage = (url, id_tablero) => async (dispatch) => {
   try {
     axios.put("/api/tablero/img/" + id_tablero, body, config);
     dispatch(setAlert("Imagen agregada", "success"));
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const addNewProveedor = (data, image_id) => async (dispatch) => {
+  const { tablero_id, origin, imageUrl, cost } = data;
+  console.log(image_id)
+  console.log(imageUrl, cost, origin, tablero_id, image_id)
+  const config = {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  };
+  const body = JSON.stringify({ imgUrl: imageUrl, cost, origin });
+  console.log(body);
+  try {
+    await axios.put("/api/tablero/proveedor/" + tablero_id+"/"+image_id, body, config);
+    dispatch(setAlert("Proveedor agregado", "success"));
   } catch (error) {
     console.log(error);
   }

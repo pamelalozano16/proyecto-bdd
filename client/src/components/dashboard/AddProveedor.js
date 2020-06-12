@@ -1,28 +1,35 @@
 import React, { Fragment, useState } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { addNewImage } from "../../actions/search";
+import { addNewImage, addNewProveedor } from "../../actions/search";
 import { getOne } from "../../actions/tableros";
-const AddImage = ({ tableros, image, addNewImage }) => {
+const AddProveedor = ({ tableros, image, addNewProveedor }) => {
   const [tableroSel, seleccionado] = useState(false);
   const [data, changeData] = useState({
     tablero_id: "",
     tablero: {},
-    image_id: "",
-    origin: "",
-    imageUrl: "",
-    cost: 0,
+    image_id: null,
+    origin: "https://es.aliexpress.com/item/"+image.productId+".html",
+    imageUrl: image.productElements.image.imgUrl,
+    cost: image.productElements.price.sell_price.value,
   });
-  const tableroSelected = (id, index) => {
-    console.log("selected: ", id);
-    //  console.log(id);
-    // console.log(index);
-    changeData({ tablero_id: id });
-    // console.log(tableros);
-    // console.log(tableros[index]);
-    changeData({ tablero: tableros[index] });
+  let imgId = "";
+  console.log(image)
+  const tableroSelected = (selectedid, index) => {
+    console.log("selected: ", selectedid);
+    changeData({ ...data, tablero_id: selectedid });
+    changeData({ ...data, tablero: tableros[index], tablero_id: selectedid });
+    console.log(data)
     seleccionado(true);
   };
+  const imageSelected = async (selectedImageid) => {
+    console.log("IMAGE SELECTED: ", selectedImageid) 
+    changeData({ ...data, image_id: selectedImageid })
+    console.log(data)
+
+    addNewProveedor(data, imgId)
+    
+  }
   return (
     <Fragment>
       <div className="addImage">
@@ -61,19 +68,34 @@ const AddImage = ({ tableros, image, addNewImage }) => {
           {tableroSel &&
             data.tablero.images.map((image) => {
               console.log(image);
+              return(<Fragment key={image._id}>
+              <div className="media text-muted pt-3">
+                <div className="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                  <div className="d-flex justify-content-between align-items-center w-100">
+                  <img src={image.imageUrl} alt={image.imageUrl} />
+                    <a>
+                        <button className="btn btn-dark"
+                          onClick={() => { imgId=image._id; imageSelected(image._id)}}>
+                        Agregar
+                      </button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </Fragment>)
             })}
         </div>
       </div>
     </Fragment>
   );
 };
-AddImage.propTypes = {
+AddProveedor.propTypes = {
   tableros: PropTypes.array.isRequired,
-  addNewImage: PropTypes.func.isRequired,
+  addNewProveedor: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   tableros: state.tableros.tableros, //En reducer index
 });
 
-export default connect(mapStateToProps, { addNewImage })(AddImage);
+export default connect(mapStateToProps, { addNewProveedor })(AddProveedor);
