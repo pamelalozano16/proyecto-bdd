@@ -30,6 +30,19 @@ const Tableros = ({
   });
   const { isNew, _id } = data;
   const [displayCreate, toggleCreate] = useState(newCreated);
+  const [open, toggleOpen]=useState({
+    isOpen:false,
+    open_id:""
+  });
+let {isOpen, open_id} = open;
+  
+const openTablero = (id)=>{
+    if(isOpen){
+      toggleOpen({...open, isOpen:!isOpen, open_id:""});
+    } else{
+    toggleOpen({...open, isOpen:!isOpen, open_id:id});
+  }
+  }
   const onDelete = (id) => {
     let _id = id;
     deleteTablero(_id);
@@ -54,7 +67,7 @@ const Tableros = ({
           Crear Tablero
         </button>
       </div>
-      <section>
+      <section className="tableros">
         {tableros !== null &&
           tableros.length > 0 &&
           tableros.map((tablero) => {
@@ -85,8 +98,18 @@ const Tableros = ({
                         {" "}
                         Edit{" "}
                       </button>
+                      <button
+                          className="btn btn-success"
+                          onClick={() =>{openTablero(tablero._id)}}
+                      >
+                        {" "}
+            {isOpen&&open_id===tablero._id?"Cerrar":"Abrir"}{" "}
+                      </button>
                     </div>
                   </div>
+                  {isOpen&&open_id===tablero._id&&(<Fragment>
+                    {console.log(open_id)}
+                    <div className="imagenesTablero">
                   <ul className="list-group list-group-horizontal">
                     {tablero?.images?.map(image => (
                         <li className="list-group-item" style={{ marginBottom: 5 }}>
@@ -124,6 +147,9 @@ const Tableros = ({
                         </li>
                     ))}
                   </ul>
+                  </div>
+                  </Fragment>)}
+                  
                 </div>
               </div>
             );

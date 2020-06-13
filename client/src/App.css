@@ -235,7 +235,17 @@ img {
   width: 100%;
   height: 100%;
 }
+.list-group{
+  display: inline-block;
+  -webkit-box-orient: horizontal;
+}
 
+.imagenesTablero{
+  width: 100%;
+}
+.tableros .btn{
+  margin-top: 10px;
+}
 /* Forms */
 
 button {
@@ -362,7 +372,7 @@ button {
   font-size: 30px;
   margin-left: 280px;
   margin-bottom: 0px;
-  bottom: 818px;
+  bottom: 80%;
   cursor: pointer;
 }
 
