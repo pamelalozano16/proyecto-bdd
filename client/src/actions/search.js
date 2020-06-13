@@ -37,7 +37,7 @@ export const search = ({ type, phrase }) => async (dispatch) => {
           "content-type": "application/octet-stream",
           "x-rapidapi-host": "ali-express1.p.rapidapi.com",
           "x-rapidapi-key":
-            "c04a1846a5mshfead1f56c7e9149p1272a1jsn496a2065e25d",
+            "0e6f6e6dafmshba98fffb4faa6fbp11fee2jsn0e57f751651d",
           useQueryString: true,
         },
       };
