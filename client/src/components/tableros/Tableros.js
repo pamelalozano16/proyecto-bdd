@@ -59,27 +59,71 @@ const Tableros = ({
           tableros.length > 0 &&
           tableros.map((tablero) => {
             return (
-              <div className="card bg-light mb-3" key={tablero._id}>
-                <div className="card-header"></div>
-                <div className="card-body">
-                  <h5 className="card-title">{tablero.name}</h5>
-                  <p className="card-text">{tablero.desc}</p>
-                  <div className="form">
-                    <button
-                      className="btn btn-danger"
-                      onClick={() => onDelete(tablero._id)}
-                    >
-                      {" "}
-                      Delete{" "}
-                    </button>
-                    <button
-                      className="btn btn-dark"
-                      onClick={() => onEdit(tablero._id)}
-                    >
-                      {" "}
-                      Edit{" "}
-                    </button>
+              <div
+                  className="card bg-light mb-3"
+                  key={tablero._id}
+              >
+                <div
+                    className="card-body"
+                    style={{ display: 'flex', justifyContent: 'space-between' }}
+                >
+                  <div style={{ display: 'flex', flexDirection: 'column' }}>
+                    <h5 className="card-title">{tablero.name}</h5>
+                    <p className="card-text">{tablero.desc}</p>
+                    <div className="form">
+                      <button
+                          className="btn btn-danger"
+                          onClick={() => onDelete(tablero._id)}
+                      >
+                        {" "}
+                        Delete{" "}
+                      </button>
+                      <button
+                          className="btn btn-dark"
+                          onClick={() => onEdit(tablero._id)}
+                      >
+                        {" "}
+                        Edit{" "}
+                      </button>
+                    </div>
                   </div>
+                  <ul className="list-group list-group-horizontal">
+                    {tablero?.images?.map(image => (
+                        <li className="list-group-item" style={{ marginBottom: 5 }}>
+                          <img
+                              src={image.imageUrl}
+                              className="card-img-top"
+                              alt={image.imageUrl}
+                              style={{ width: 100, height: 100, marginRight: 10 }}
+                          />
+                          <ul className="list-group">
+                            {image.proveedores.length === 0 &&
+                              <div className="list-group-item" style={{ marginBottom: 5 }}>
+                                <span className="badge badge-pill badge-secondary p-2 m-1">
+                                  No tiene proveedores
+                                </span>
+                              </div>}
+                            {console.log(image.proveedores)}
+                            {image.proveedores.length !== 0 &&
+                            image.proveedores.map(({ proveedor: provider}, i) =>
+                              <div>
+                                <a
+                                    href={provider.origin}
+                                    target="_blank"
+                                >
+                                     <span className="badge badge-pill badge-secondary p-2 m-1">
+                                       {`Ver proveedor ${i + 1}`}
+                                     </span>
+                                </a>
+                                <span className="badge badge-pill badge-primary p-2 m-1">
+                                      {`Precio: $${provider.cost}`}
+                                  </span>
+                              </div>
+                            )}
+                          </ul>
+                        </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             );
